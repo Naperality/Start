@@ -5,14 +5,12 @@
     overflow: hidden;
     filter: blur(2px);
   }
-  
   .frame {
     border: 50px solid black;
     width: 500px;
     padding: 50px;
     margin: 20px auto;
   }
-  
   .one {
     width: 425px;
     height: 150px;
@@ -31,11 +29,9 @@
     border-radius: 8px 10px;
     transform: rotate(0.4deg);
   }
-  
   .one, .two {
     filter: blur(1px);
   }
-  
   .three {
     width: 91%;
     height: 28%;
