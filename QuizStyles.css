@@ -1,5 +1,7 @@
-* {
-    scroll-behavior: smooth;
+@media (prefers-reduced-motion: no-preference) {
+    * {
+      scroll-behavior: smooth;
+    }
   }
   
   body {
@@ -169,7 +171,6 @@
     text-align: center;
     padding: 0.3em;
   }
-  
   .sr-only {
     position: absolute;
     width: 1px;
