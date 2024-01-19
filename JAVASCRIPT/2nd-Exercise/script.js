@@ -24,6 +24,28 @@ function isInvalidInput(str){
   return(str.match(regex));
 }
 function addEntry() {
-    const targetId = '#' + entryDropdown.value;
-    const targetInputContainer = document.querySelector(`${targetId} .input-container`);//template literal with dollar sign and object sign
+    const targetInputContainer = document.querySelector(`#${entryDropdown.value} .input-container`);//template literal with dollar sign and object sign
+    const entryNumber = targetInputContainer.querySelectorAll('input[type="text"]').length+1;
+    const HTMLString = `
+    <label for="${entryDropdown.value}-${entryNumber}-name">Entry ${entryNumber} Name</label>
+    <input type="text" placeholder="Name" id="${entryDropdown.value}-${entryNumber}-name">
+    <label for="${entryDropdown.value}-${entryNumber}-calories">Entry ${entryNumber} Calories</label>
+    <input type="number" min="0" placeholder="Calories" id="${entryDropdown.value}-${entryNumber}-calories">
+    `;
+    //putting codes to html in here javascript
+    //innerHTML - directly affecting the html just use +=
+    //insertAdjacentHTML - adding html it is a method (where, what)
+    targetInputContainer.insertAdjacentHTML("beforeend",HTMLString); 
+}
+addEntryButton.addEventListener("click",addEntry);
+
+function getCaloriesFromInputs(list){
+    let calories=0;
+    for (let i = 0; i < list.length; i++) {
+        const currVal = cleanInputString(list[i].value);
+        const invalidInputMatch = isInvalidInput(currVal);
+        if (invalidInputMatch) {
+            alert(`Invalid Input: ${invalidInputMatch[0]}`);
+        }
+    }
 }
