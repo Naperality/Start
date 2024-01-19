@@ -83,6 +83,22 @@ function calculateCalories(e){
  <span class = "${surplusOrDeficit.toLowerCase()}">${Math.abs(remainingCalories)} Calorie ${surplusOrDeficit}</span>
  <hr>
  <p>${budgetCalories} Calories Budgeted</p>
+ <p>${consumedCalories} Calories Consumed</p>
+ <p>${exerciseCalories} Calories Burned</p>
  `;
-
+ output.classList.remove("hide");
 }
+
+calorieCounter.addEventListener("submit",calculateCalories);
+
+function clearForm(){
+    const inputContainers =  Array.from(document.querySelectorAll(".input-container"));
+    for (let i = 0; i < inputContainers.length; i++) {
+        inputContainers[i].innerHTML = "";
+    }
+    budgetNumberInput.value = '';
+    output.innerText = "";
+    output.classList.add("hide");
+}
+
+clearButton.addEventListener("click",clearForm);
