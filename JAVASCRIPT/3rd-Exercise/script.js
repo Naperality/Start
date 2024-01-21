@@ -93,7 +93,7 @@ const renderSongs = (array) => {
       .map((song)=> {//map use to iterate arrays, //with callback 
         return `
         <li id="song-${song.id}" class="playlist-song">
-        <button class="playlist-song-info">
+        <button class="playlist-song-info" onclick="playSong(${song.id})">
             <span class="playlist-song-title">${song.title}</span>
             <span class="playlist-song-artist">${song.artist}</span>
             <span class="playlist-song-duration">${song.duration}</span>
@@ -120,6 +120,90 @@ const playSong = (id) => {
     }else{
         audio.currentTime = userData.songCurrentTime;
     }
+    userData.currentSong = song;
+    //playing music
+    playButton.classList.add("playing");
+    audio.play();
+    //highlighting music
+    highlightCurrentSong();
+    //update artist and title display
+    setPlayerDisplay();
+    //set Dplay button accessible text
+    setPlayButtonAccessibleText();
   };
 
-  userData.currentSong = song;
+playButton.addEventListener("click",()=>{
+    if(userData?.currentSong === null){
+        playSong(userData?.songs[0].id);
+    }else{
+        playSong(userData?.currentSong.id);
+    }
+});
+
+//Pausing music
+const pauseSong = ()=>{
+    userData.songCurrentTime = audio.currentTime;
+    playButton.classList.remove("playing");
+    audio.pause();
+};
+pauseButton.addEventListener("click",pauseSong);
+
+//current song index
+const getCurrentSongIndex = ()=>{
+    return userData?.songs.indexOf(userData.currentSong);
+};
+//next song 
+const playNextSong = ()=>{
+    if (userData?.currentSong===null) {
+        playSong(userData?.songs[0].id);
+    }else{
+        const currentSongIndex = getCurrentSongIndex();
+        const nextSong = userData?.songs[currentSongIndex + 1];
+        playSong(nextSong.id);
+    }
+};
+nextButton.addEventListener("click",playNextSong);
+//previous button
+const playPreviousSong = ()=>{
+    if (userData?.currentSong ===null) {
+        return;
+    }else{
+        const currentSongIndex = getCurrentSongIndex();
+        const previousSong =  userData?.songs[currentSongIndex-1];
+        playSong(previousSong.id);
+    }
+};
+previousButton.addEventListener("click",playPreviousSong);
+//highlighting music in playing
+const highlightCurrentSong = ()=>{
+    const playlistSongElements = document.querySelectorAll(".playlist-song");
+    const songToHighlight = document.getElementById(`song-${userData?.currentSong?.id}`);
+};
+playlistSongElements.forEach(songEl => {
+    songEl.removeAttribute("aria-current");
+});
+if (songToHighlight) {
+    songToHighlight.setAttribute("aria-current","true");
+}
+
+//display current song title and details
+const setPlayerDisplay = ()=>{
+    const playingSong = document.getElementById("player-song-title");
+    const songArtist = document.getElementById("player-song-artist");
+    
+    const currentArtist =  userData?.currentSong?.artist;
+    const currentTitle = userData?.currentSong?.title;
+    playingSong.textContent = currentTitle? currentTitle:"";
+    songArtist.textContent = currentArtist? currentArtist:"";
+};
+
+//Accessible text playbutton
+const setPlayButtonAccessibleText = ()=>{
+    const song = userData?.currentSong||userData?.songs[0];
+    playButton.setAttribute("aria-label",song?.title ? `Play ${song.title}` : "Play");
+};
+
+//Shuffle method
+const shuffle = ()=>{
+    userData?.songs.sort(()=>{});
+};
