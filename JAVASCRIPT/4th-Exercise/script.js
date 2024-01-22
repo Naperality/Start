@@ -9,4 +9,16 @@ const year = date.getFullYear();
 const hours = date.getHours();
 const minutes = date.getMinutes();
 //formatting dates
-const formattedDate = `${day}`;
+const formattedDate = `${day}-${month}-${year}`;//day-month-year
+currentDateParagraph.textContent = formattedDate;
+//function to detect change on dropdown list
+dateOptionsSelectElement.addEventListener("change",()=>{
+    switch (dateOptionsSelectElement.value) {
+        case "yyyy-mm-dd":
+            currentDateParagraph.textContent = formattedDate;
+            break;
+    
+        default:
+            break;
+    }
+})
