@@ -11,7 +11,7 @@ const dateInput = document.getElementById("date-input");
 const descriptionInput = document.getElementById("description-input");
 
 //task data array for local storage
-const taskData = [];
+const taskData = JSON.parse(localStorage.getItem("data")) || [];
 let currentTask = {};
 
 //funcitons for event listeners
@@ -75,7 +75,9 @@ const reset = ()=>{
     taskForm.classList.toggle("hidden");
     currentTask = {};
 };
-
+if(taskData.length){
+    updateTaskContainer();
+}
 //event listeners
 openTaskFormBtn.addEventListener("click", ()=>taskForm.classList.toggle("hidden"));
 closeTaskFormBtn.addEventListener("click",()=>{
