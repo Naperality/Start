@@ -5,7 +5,6 @@
     --yellow: #f1be32;
     --golden-yellow: #feac32;
   }
-  
   *,
   *::before,
   *::after {
@@ -13,23 +12,19 @@
     padding: 0;
     box-sizing: border-box;
   }
-  
   body {
     background-color: var(--dark-grey);
   }
-  
   main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-  
   h1 {
     color: var(--light-grey);
     margin: 20px 0 40px 0;
   }
-  
   .todo-app {
     background-color: var(--white);
     width: 300px;
@@ -42,7 +37,6 @@
     flex-direction: column;
     gap: 10px;
   }
-  
   .btn {
     cursor: pointer;
     width: 100px;
@@ -53,29 +47,24 @@
     border-color: var(--golden-yellow);
     border-width: 3px;
   }
-  
   .btn:hover {
     background-image: linear-gradient(#ffcc4c, #f89808);
   }
-  
   .large-btn {
     width: 80%;
     font-size: 1.2rem;
     align-self: center;
     justify-self: center;
   }
-  
   .close-task-form-btn {
     background: none;
     border: none;
     cursor: pointer;
   }
-  
   .close-icon {
     width: 20px;
     height: 20px;
   }
-  
   .task-form {
     display: flex;
     position: absolute;
@@ -91,23 +80,19 @@
     justify-content: space-between;
     overflow: auto;
   }
-  
   .task-form-header {
     display: flex;
     justify-content: flex-end;
   }
-  
   .task-form-body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
   }
-  
   .task-form-footer {
     display: flex;
     justify-content: center;
   }
-  
   .task-form-label,
   #title-input,
   #date-input,
@@ -120,7 +105,6 @@
     font-size: 1.3rem;
     font-weight: bold;
   }
-  
   #title-input,
   #date-input,
   #description-input {
@@ -128,19 +112,16 @@
     margin-bottom: 10px;
     padding: 2px;
   }
-  
   #confirm-close-dialog {
     padding: 10px;
     margin: 10px auto;
     border-radius: 15px;
   }
-  
   .confirm-close-dialog-btn-container {
     display: flex;
     justify-content: center;
     margin-top: 10px;
   }
-  
   .discard-message-text {
     font-weight: bold;
     font-size: 1.5rem;
