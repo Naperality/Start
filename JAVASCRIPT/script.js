@@ -27,7 +27,11 @@ const addOrUpdateTask=()=>{
     //changing data or updating
     if (dataArrIndex === -1) {
         taskData.unshift(taskObj);
+    }else{
+        taskData[dataArrIndex] = taskObj;
     }
+    //local storage use after adding or updating
+    localStorage.setItem("data",JSON.stringify(taskData));
     updateTaskContainer();
     reset();
 };
@@ -50,9 +54,17 @@ const deleteTask = (buttonEl) => {
     const dataArrIndex = taskData.findIndex((item)=>item.id===buttonEl.parentElement.id);
     buttonEl.parentElement.remove();
     taskData.splice(dataArrIndex,1);
+    localStorage.setItem("data",JSON.stringify(taskData));
 };
 const editTask = (buttonEl) => {
-    
+    const dataArrIndex = taskData.findIndex((item)=>item.id===buttonEl.parentElement.id);
+    currentTask = taskData[dataArrIndex];
+    titleInput.value = currentTask.title;
+    dateInput.value = currentTask.date;
+    descriptionInput.value = currentTask.description;
+
+    addOrUpdateTaskBtn.innerText = "Update Task";
+    taskForm.classList.toggle("hidden");
 };
 
 //funciton for clearing data after every entry
@@ -68,7 +80,10 @@ const reset = ()=>{
 openTaskFormBtn.addEventListener("click", ()=>taskForm.classList.toggle("hidden"));
 closeTaskFormBtn.addEventListener("click",()=>{
     const formInputsContainValues=titleInput.value || dateInput.value || descriptionInput.value;
-    if (formInputsContainValues) {
+    const formInputValuesUpdated = titleInput.value!==currentTask.title ||
+                                   dateInput.value !== currentTask.date || 
+                                   descriptionInput.value !== currentTask.description;
+    if (formInputsContainValues && formInputValuesUpdated) {
         confirmCloseDialog.showModal();
     }else{
         reset();
