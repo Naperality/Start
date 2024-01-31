@@ -60,6 +60,15 @@ const getVariance = (array) => {
     },0)/array.length;
     return variance;
 };
+
+//function to get standard deviation
+const getStandardDeviation = (array) => {
+    const variance = getVariance(array);
+    //const standardDeviation = Math.pow(variance,1/2); or
+    const standardDeviation = Math.sqrt(variance);
+    return standardDeviation;
+};
+
 //function to get data from user input
 const calculate = ()=>{
     const value = document.querySelector("#numbers").value;
@@ -73,6 +82,11 @@ const calculate = ()=>{
     const mode = getMode(numbers);
     //get range of the number
     const range = getRange(numbers);
+     //get variance of the number
+     const variance = getVariance(numbers);
+     //get standardDeviation of the number
+     const standardDeviation = getStandardDeviation(numbers);
+
     //display value of mean
     document.querySelector("#mean").textContent = mean;
     //display value of median
@@ -81,5 +95,9 @@ const calculate = ()=>{
     document.querySelector("#mode").textContent = mode;
     //display value of range
     document.querySelector("#range").textContent = range;
+    //display value of variance
+    document.querySelector("#variance").textContent = variance;
+    //display value of standard Deviation
+    document.querySelector("#standardDeviation").textContent = standardDeviation;
 
 };
