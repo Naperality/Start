@@ -35,6 +35,31 @@ const getMode = (array) => {
     return mode.join(", ");
     };
 
+//function to get range
+const getRange = (array) => Math.max(...array) - Math.min(...array);
+
+//function to get variance
+// const getVariance = (array) => {
+//     const mean = getMean(array);
+//   const differences = array.map(
+//     el => el - mean
+//   );
+//   const squaredDifferences = differences.map(
+//     el => el ** 2
+//   );
+//   const sumSquaredDifferences = squaredDifferences.reduce(
+//     (acc, el) => acc + el, 0
+//   );
+// };
+const getVariance = (array) => {
+    const mean = getMean(array);
+    const variance = array.reduce((acc,el)=>{
+        const difference = el-mean;
+        const squared = difference**2;
+        return acc+squared;
+    },0)/array.length;
+    return variance;
+};
 //function to get data from user input
 const calculate = ()=>{
     const value = document.querySelector("#numbers").value;
@@ -46,10 +71,15 @@ const calculate = ()=>{
     const median = getMedian(numbers);
     //get mode of the number
     const mode = getMode(numbers);
+    //get range of the number
+    const range = getRange(numbers);
     //display value of mean
     document.querySelector("#mean").textContent = mean;
     //display value of median
     document.querySelector("#median").textContent = median;
     //display value of mode
     document.querySelector("#mode").textContent = mode;
+    //display value of range
+    document.querySelector("#range").textContent = range;
+
 };
