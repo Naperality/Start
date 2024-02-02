@@ -1,11 +1,39 @@
+
+//is Even function
+const isEven = (num) => num%2===0 ? true: false;
+
 //declare sum function
 const sum = nums => nums.reduce((acc, el) => acc + el, 0);
+
+//average function
+const average = (nums) => sum(nums)/nums.length;
+
+//median function
+const median = (nums) => {
+    const sorted = nums.slice().sort((a,b)=>a-b);
+    const length = sorted.length;
+    const middle = length/2-1;
+    return isEven(length) ? average([sorted[middle],sorted[middle+1]]):sorted[Math.ceil(middle)];
+};
+
+//object to facilitates functions
+const spreadsheetFunctions  = {
+    sum,
+    average,
+    median,
+}; 
 
 //declare range array using funciton
 const range = (start, end) => Array(end - start + 1).fill(start).map((element, index) => element + index);
 
 //getting char in array range
 const charRange = (start, end) => range(start.charCodeAt(0), end.charCodeAt(0)).map(code => String.fromCharCode(code));
+
+//formula function
+const evalFormula = (x, cells) => {
+    const idToText = id => cells.find(cell => cell.id === id).value;
+  
+}
 
 //windows upload 
 window.onload = () => {
@@ -25,7 +53,17 @@ window.onload = () => {
       input.type = "text";
       input.id = letter + number;
       input.ariaLabel = letter + number;
+      input.onchange = update;
       container.appendChild(input);
     })
   })
+};
+
+//update function for using made inbuilt function of spreadsheet
+const update = (event) => {
+    const element = event.target;
+    const value = element.value.replace(/\s/g, "");
+    if (!value.includes(element.id)&&value.charAt(0)=== "=") {
+
+    }
 };
