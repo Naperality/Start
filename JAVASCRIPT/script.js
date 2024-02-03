@@ -32,7 +32,7 @@ const charRange = (start, end) => range(start.charCodeAt(0), end.charCodeAt(0)).
 //formula function
 const evalFormula = (x, cells) => {
     const idToText = id => cells.find(cell => cell.id === id).value;
-  
+    const rangeRegex = /([A-J])/;
 }
 
 //windows upload 
