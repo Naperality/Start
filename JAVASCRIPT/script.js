@@ -1,3 +1,20 @@
+//infix 
+const infixToFunction = {
+'+':(x,y)=>x+y,
+'-':(x,y)=>x-y,
+'*':(x,y)=>x*y,
+'/':(x,y)=>x/y,
+};
+
+//evaluating infixes
+const infixEval = (str, regex) => str.replace(regex, (_match, arg1, operator, arg2) => infixToFunction[operator](parseFloat(arg1),parseFloat(arg2)));
+
+//high precednece function
+const highPrecedence = (str) => {
+  const regex = /([\d.]+)([*\/])([\d.]+)/;
+  const str2 = infixEval(str,regex);
+  return str2===str ? str: highPrecedence(str2);
+};
 
 //is Even function
 const isEven = (num) => num%2===0 ? true: false;
@@ -16,6 +33,9 @@ const median = (nums) => {
     return isEven(length) ? average([sorted[middle],sorted[middle+1]]):sorted[Math.ceil(middle)];
 };
 
+//applying function 
+const applyFunction = (str) =>{};
+
 //object to facilitates functions
 const spreadsheetFunctions  = {
     sum,
@@ -31,13 +51,14 @@ const charRange = (start, end) => range(start.charCodeAt(0), end.charCodeAt(0)).
 
 //formula function
 const evalFormula = (x, cells) => {
-const idToText = id => cells.find(cell => cell.id === id).value;
+  const idToText = id => cells.find(cell => cell.id === id).value;
   const rangeRegex = /([A-J])([1-9][0-9]?):([A-J])([1-9][0-9]?)/gi;
   const rangeFromString = (num1, num2) => range(parseInt(num1), parseInt(num2));
   const elemValue = num => character => idToText(character + num);
   const addCharacters = character1 => character2 => num => charRange(character1, character2).map(elemValue(num));
   const rangeExpanded = x.replace(rangeRegex, (_match, char1, num1, char2, num2) => rangeFromString(num1, num2).map(addCharacters(char1)(char2)));
   const cellRegex = /[A-J][1-9][0-9]?/gi;
+  const cellExpanded = rangeExpanded.replace(cellRegex, match => idToText(match.toUpperCase()));
 }
 
 //windows upload 
