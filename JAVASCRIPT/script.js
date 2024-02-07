@@ -10,3 +10,6 @@ checkMessageButton.addEventListener("click",()=>{
         return;
     }
 });
+
+//is spam function
+const isSpam = (msg) => false;
