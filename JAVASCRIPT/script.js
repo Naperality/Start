@@ -11,10 +11,13 @@ const dollarRegex = /[0-9]+ (?:hundred|thousand|million|billion)? dollars/i;
 //strings- "[e3]" means e and 3 to match, "\s" looks for spaces or line breaks, 
 //"^" means beginning of string, "$" means end of string
 const freeRegex = /(?:\s|^)fr[e3][e3] m[o0]n[e3]y(?:\s|$)/i;
-
+//stock alert 
+const stockRegex = /(?:^|\s)[s5][t7][o0][c{[(]k [a@4]l[e3]r[t7](?:$|\s)/i;
+//dear friend
+const dearRegex = /dear friend/i;
 
 //arrays of  regex
-const denyList = [helpRegex,dollarRegex,freeRegex];
+const denyList = [helpRegex, dollarRegex, freeRegex, stockRegex,dearRegex];
 
 //is spam function
 const isSpam = (msg) => helpRegex.test(msg);
