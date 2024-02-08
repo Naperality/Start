@@ -5,9 +5,11 @@ const checkMessageButton= document.getElementById("check-message-btn");
 
 //regex to catch
 const helpRegex = /please help|assist me/i;
+//dollar 
+const dollarRegex = /[0-9]+ hundred|thousand|million|billion dollars/i;
 
 //arrays of  regex
-const denyList = [helpRegex];
+const denyList = [helpRegex,dollarRegex];
 
 //is spam function
 const isSpam = (msg) => helpRegex.test(msg);
