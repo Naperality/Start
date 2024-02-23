@@ -10,6 +10,7 @@ const cartTotal = document.getElementById("total");
 const showHideCartSpan = document.getElementById("show-hide-cart");
 
 let isCartShowing = false;
+//list of objects for showing into html
 const products = [
     {
         id: 1,
@@ -84,6 +85,8 @@ const products = [
         category: "Cupcake",
     },
 ];
+
+products.forEach(()=>{});
 
 
 
