@@ -98,6 +98,18 @@ products.forEach(
       `;
     }
   );
+  
+  //class making in javascript
+  class ShoppingCart{
+    constructor(){
+        this.items = [];
+        this.total = 0;
+        this.taxRate = 8.25;
+    }
+    addItem(id,products){
+        
+    }
+  };
 
 
 
