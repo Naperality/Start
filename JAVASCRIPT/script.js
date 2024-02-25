@@ -127,16 +127,3 @@ products.forEach(
 
 
 
-
-
-  
-
-
-
-
-
-
-
-
-
-
