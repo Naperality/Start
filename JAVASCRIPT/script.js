@@ -122,12 +122,6 @@ products.forEach(
 
 
 
-  
-
-
-
-
-
 
 
 
