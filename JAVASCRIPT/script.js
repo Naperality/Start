@@ -116,4 +116,9 @@ products.forEach(
     });
     const currentProductCount = totalCountPerProduct[product.id];    
     }
-  };
+  }; 
+
+
+
+
+  
